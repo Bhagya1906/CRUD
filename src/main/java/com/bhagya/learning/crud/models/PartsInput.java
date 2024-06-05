@@ -1,9 +1,7 @@
 package com.bhagya.learning.crud.models;
 
 import jakarta.persistence.Column;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,21 +11,26 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PartsInput {
 
+    @NotNull
     private int featureId;
 
-    @NotNull(message = "nameEn should not be null")
+    @NotEmpty(message = "nameEn should not be empty")
+    @Size(min = 2, message = "nameEn should have at least 2 characters")
     private String nameEn;
 
-    @NotNull(message = "nameDE should not be null")
+    @NotBlank(message = "nameDE should not be empty")
+    @Size(min = 2, message = "nameDE should have at least 2 characters")
     private String nameDE;
 
-    @NotNull(message = "partNumber should not be null")
-    @Size(min = 11, max = 11, message = "partNumber must have 11 characters")
+    @NotBlank(message = "partNumber should not be empty")
+    @Size(min = 11, message = "partNumber should have at least 11 characters")
     private String partNumber;
 
-    @NotNull(message = "noOfDS should not be null")
+    @NotNull
+    @Positive
     private int noOfDS;
 
-    @NotNull(message = "noOfDZ should not be null")
+    @NotNull
+    @Positive
     private int noOfDZ;
 }

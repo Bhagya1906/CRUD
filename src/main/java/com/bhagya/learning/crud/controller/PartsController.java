@@ -5,6 +5,7 @@ import com.bhagya.learning.crud.exception.NoPartsFoundException;
 import com.bhagya.learning.crud.models.PartsDetails;
 import com.bhagya.learning.crud.models.PartsInput;
 import com.bhagya.learning.crud.service.PartsService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -67,7 +68,7 @@ public class PartsController {
      */
 
     @PostMapping
-    public ResponseEntity<PartsDetails> createPartsDetails(@RequestBody final PartsInput partsInput) {
+    public ResponseEntity<PartsDetails> createPartsDetails(@Valid @RequestBody final PartsInput partsInput) {
         return ResponseEntity.ok(partsService.createPartsDetails(partsInput));
     }
 
@@ -82,7 +83,7 @@ public class PartsController {
      */
 
     @PutMapping("/{id}")
-    public ResponseEntity<PartsDetails> updateParts(@RequestBody final PartsInput updatePart, @PathVariable final int featureId) {
+    public ResponseEntity<PartsDetails> updateParts(@Valid @RequestBody final PartsInput updatePart,@PathVariable final int featureId) {
         return ResponseEntity.ok(partsService.updatePartById(featureId, updatePart));
     }
 
